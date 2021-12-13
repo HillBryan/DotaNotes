@@ -6,6 +6,10 @@ import com.codedisaster.steamworks.SteamException;
 import java.util.Timer;
 import java.util.TimerTask;
 
+/**
+ * @Author Bryan Hill
+ */
+
 public class Runner {
 
 

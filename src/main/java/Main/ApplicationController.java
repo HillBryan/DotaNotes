@@ -8,6 +8,10 @@ import com.codedisaster.steamworks.SteamUser;
 
 import java.util.HashSet;
 
+/**
+ * @Author Bryan Hill
+ */
+
 public class ApplicationController {
 
     public final int DOTA_2_ID = 570;
@@ -51,18 +55,30 @@ public class ApplicationController {
         }
     }
 
+    /**
+     * Method adds friend to client set if not present and not the running user.
+     * @param friendID
+     */
     public void addToClientSet(SteamID friendID) {
         if (!this.inDotaClientSet.contains(friendID) && !friendID.equals(this.personalID)) {
             this.inDotaClientSet.add(friendID);
         }
     }
 
+    /**
+     * Method removes user from the client set if present.
+     * @param friendID
+     */
     public void removeFromClientSet(SteamID friendID) {
         if (this.inDotaClientSet.contains(friendID)) {
             this.inDotaClientSet.remove(friendID);
         }
     }
 
+    /**
+     * Method adds user to game set and sends chat message.
+     * @param friendID
+     */
     public void addToInGameSet(SteamID friendID) {
         if (!this.inDotaMatchSet.contains(friendID) && !friendID.equals(this.personalID)) {
             this.inDotaMatchSet.add(friendID);
@@ -72,6 +88,10 @@ public class ApplicationController {
         }
     }
 
+    /**
+     * Method removes user from game set and sends message (If still in dota 2).
+     * @param friendID
+     */
     public void removeFromInGameSet(SteamID friendID) {
         if (this.inDotaMatchSet.contains(friendID)) {
             this.inDotaMatchSet.remove(friendID);
@@ -87,15 +107,25 @@ public class ApplicationController {
         }
     }
 
+    /**
+     * Method is currently a stub.
+     */
     public void sendLobbyChatMessage() {
         System.out.println("Good luck on your game!");
     }
 
+    /**
+     * Method is currently a stub.
+     */
     public void sendPostGameMessage() {
         System.out.println("Awesome job on your game!");
     }
 
 
+    /**
+     * Method to get instance of this class. Singleton pattern.
+     * @return running instance of ApplicationController.
+     */
     public static ApplicationController getInstance() {
         if (instance == null) {
             instance = new ApplicationController();
@@ -103,14 +133,26 @@ public class ApplicationController {
         return instance;
     }
 
+    /**
+     * Getter for SteamFriends.
+     * @return SteamFriends
+     */
     public SteamFriends getSteamFriends() {
         return this.steamFriends;
     }
 
+    /**
+     * Getter for client set.
+     * @return HashSet of clients in dota 2.
+     */
     public HashSet<SteamID> getInDotaClientSet() {
         return inDotaClientSet;
     }
 
+    /**
+     * Getter for in match set.
+     * @return HashSet of clients in a match.
+     */
     public HashSet<SteamID> getInDotaMatchSet() {
         return inDotaMatchSet;
     }

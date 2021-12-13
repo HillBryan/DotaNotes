@@ -8,6 +8,10 @@ import com.codedisaster.steamworks.SteamResult;
 
 import java.util.HashSet;
 
+/**
+ * @Author Bryan Hill
+ */
+
 public class SteamFriendsImpl implements SteamFriendsCallback {
 
     HashSet<SteamID> inDotaClientSet;
