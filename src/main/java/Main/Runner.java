@@ -38,7 +38,7 @@ public class Runner {
                 SteamAPI.runCallbacks();
 
                 if (controller.getInDotaClientSet().size() != clientSize) {
-                    System.out.println("New Friend has Joined Dota!");
+                    System.out.println("New Friend has Joined/Left Dota!");
                     System.out.println(controller.getInDotaClientSet());
                 }
                 clientSize = controller.getInDotaClientSet().size();
