@@ -29,6 +29,19 @@ public class SteamFriendsImpl implements SteamFriendsCallback {
 
     @Override
     public void onPersonaStateChange(SteamID steamID, SteamFriends.PersonaChange personaChange) {
+        // In some instances, this will trigger when one leaves a game.
+
+        // Getting current game.
+        SteamFriends.FriendGameInfo info = new SteamFriends.FriendGameInfo();
+        ApplicationController.getInstance().getSteamFriends().getFriendGamePlayed(steamID, info);
+
+        // Adding to dota client set.
+        if (info.getGameID() == ApplicationController.getInstance().DOTA_2_ID) {
+            ApplicationController.getInstance().addToClientSet(steamID);
+        } else {
+            ApplicationController.getInstance().removeFromClientSet(steamID);
+            ApplicationController.getInstance().removeFromInGameSet(steamID);
+        }
 
     }
 

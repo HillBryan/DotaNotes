@@ -53,6 +53,7 @@ public class ApplicationController {
                 }
             }
         }
+        System.out.println("In dota on load: " + this.inDotaClientSet);
     }
 
     /**
