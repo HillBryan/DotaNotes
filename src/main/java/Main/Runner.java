@@ -17,16 +17,12 @@ public class Runner {
 
         // Initializing Steam Libraries.
         initialize();
-        System.out.println("Initializing Success!");
 
         // Controller object for all operations with the SteamWorks API.
         ApplicationController controller = ApplicationController.getInstance();
 
         // Initial parse of friend list state.
         controller.refreshClientSet();
-
-
-        int matchSize = controller.getInDotaMatchSet().size();
 
         // Starting callback repeat timer.
         Timer t = new Timer();
@@ -44,7 +40,6 @@ public class Runner {
                 clientSize = controller.getInDotaClientSet().size();
             }
         }, 0, 1000);
-
     }
 
     /**
@@ -60,5 +55,6 @@ public class Runner {
         } catch (SteamException e) {
             System.out.println("Steam auth Error: " + e);
         }
+        System.out.println("SteamWorks Login Success!");
     }
 }

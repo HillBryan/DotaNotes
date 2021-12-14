@@ -8,6 +8,7 @@
     <artifactId>TestSteamWorks</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
@@ -23,6 +24,16 @@
             <groupId>com.code-disaster.steamworks4j</groupId>
             <artifactId>steamworks4j-server</artifactId>
             <version>1.8.0</version>
+        </dependency>
+        <dependency>
+            <groupId>in.dragonbra</groupId>
+            <artifactId>javasteam</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+        <dependency> <!-- NON-ANDROID ONLY -->
+            <groupId>org.bouncycastle</groupId>
+            <artifactId>bcprov-jdk15on</artifactId>
+            <version>1.69</version>
         </dependency>
     </dependencies>
 

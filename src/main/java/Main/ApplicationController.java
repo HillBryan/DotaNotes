@@ -20,7 +20,8 @@ public class ApplicationController {
     private HashSet<SteamID> inDotaMatchSet;        // Set for friends in current match.
     private SteamUser steamUser;                    // SteamUser for interacting with user information.
     private SteamFriends steamFriends;              // SteamFriends for interacting with steam friends information.
-    private static ApplicationController instance;
+    private MessageManager messageManager;          // MessageManager for sending steam messages.
+    private static ApplicationController instance;  // Singleton instance.
 
     private ApplicationController() {
         inDotaClientSet = new HashSet<>();
@@ -30,6 +31,7 @@ public class ApplicationController {
                 inDotaClientSet,
                 inDotaMatchSet
         ));
+        messageManager = new MessageManager();
         personalID = steamUser.getSteamID();
     }
 
@@ -85,7 +87,7 @@ public class ApplicationController {
             this.inDotaMatchSet.add(friendID);
 
             // TODO: This is where message would be sent.
-            sendLobbyChatMessage();
+            sendLobbyChatMessage(friendID);
         }
     }
 
@@ -103,7 +105,7 @@ public class ApplicationController {
 
             if (info.getGameID() == this.DOTA_2_ID) {
                 // TODO: This is where message would be sent.
-                sendPostGameMessage();
+                sendPostGameMessage(friendID);
             }
         }
     }
@@ -111,15 +113,15 @@ public class ApplicationController {
     /**
      * Method is currently a stub.
      */
-    public void sendLobbyChatMessage() {
-        System.out.println("Good luck on your game!");
+    public void sendLobbyChatMessage(SteamID id) {
+        //messageManager.sendMessage(id, "Good Luck On Your Game!");
     }
 
     /**
      * Method is currently a stub.
      */
-    public void sendPostGameMessage() {
-        System.out.println("Awesome job on your game!");
+    public void sendPostGameMessage(SteamID id) {
+        //messageManager.sendMessage(id, "Nice Job Feeding!");
     }
 
 
@@ -156,5 +158,13 @@ public class ApplicationController {
      */
     public HashSet<SteamID> getInDotaMatchSet() {
         return inDotaMatchSet;
+    }
+
+    /**
+     * Getter for the messageManager object.
+     * @return MessageManager for sending messages.
+     */
+    public MessageManager getMessageManager() {
+        return messageManager;
     }
 }
