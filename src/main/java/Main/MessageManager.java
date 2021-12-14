@@ -13,6 +13,9 @@ import in.dragonbra.javasteam.steam.steamclient.callbackmgr.CallbackManager;
 import in.dragonbra.javasteam.steam.steamclient.callbacks.ConnectedCallback;
 import in.dragonbra.javasteam.steam.steamclient.callbacks.DisconnectedCallback;
 
+/**
+ * @Author Bryan Hill
+ */
 public class MessageManager {
 
     private SteamClient steamClient;

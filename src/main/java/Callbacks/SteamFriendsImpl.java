@@ -36,13 +36,7 @@ public class SteamFriendsImpl implements SteamFriendsCallback {
         ApplicationController.getInstance().getSteamFriends().getFriendGamePlayed(steamID, info);
 
         // Adding to dota client set.
-        if (info.getGameID() == ApplicationController.getInstance().DOTA_2_ID) {
-            ApplicationController.getInstance().addToClientSet(steamID);
-        } else {
-            ApplicationController.getInstance().removeFromClientSet(steamID);
-            ApplicationController.getInstance().removeFromInGameSet(steamID);
-        }
-
+        addOrRemoveFromClientSet(info, steamID);
     }
 
     @Override
@@ -75,12 +69,7 @@ public class SteamFriendsImpl implements SteamFriendsCallback {
                 getFriendRichPresence(steamID, "steam_display");
 
         // Adding to dota client set.
-        if (info.getGameID() == ApplicationController.getInstance().DOTA_2_ID) {
-            ApplicationController.getInstance().addToClientSet(steamID);
-        } else {
-            ApplicationController.getInstance().removeFromClientSet(steamID);
-            ApplicationController.getInstance().removeFromInGameSet(steamID);
-        }
+        addOrRemoveFromClientSet(info, steamID);
 
         // If "hero-select" is enabled
         System.out.println(richPresence);
@@ -100,6 +89,20 @@ public class SteamFriendsImpl implements SteamFriendsCallback {
     @Override
     public void onGameServerChangeRequested(String s, String s1) {
 
+    }
+
+    /**
+     * Method will remove or add users to the Dota 2 client set based on if they are playing the game.
+     * @param info Object to information on user's current game they are playing.
+     * @param steamID Object identifying the user being examined.
+     */
+    public void addOrRemoveFromClientSet(SteamFriends.FriendGameInfo info, SteamID steamID) {
+        if (info.getGameID() == ApplicationController.getInstance().DOTA_2_ID) {
+            ApplicationController.getInstance().addToClientSet(steamID);
+        } else {
+            ApplicationController.getInstance().removeFromClientSet(steamID);
+            ApplicationController.getInstance().removeFromInGameSet(steamID);
+        }
     }
 
 }
