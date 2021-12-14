@@ -88,6 +88,7 @@ public class SteamWorksController {
         if (!this.inDotaMatchSet.contains(friendID) && !friendID.equals(this.personalID)) {
             this.inDotaMatchSet.add(friendID);
 
+            System.out.println("Player has joined game: " + friendID);
             // TODO: This is where message would be sent.
             sendLobbyChatMessage(friendID);
         }
@@ -107,6 +108,7 @@ public class SteamWorksController {
 
             if (info.getGameID() == this.DOTA_2_ID) {
                 // TODO: This is where message would be sent.
+                System.out.println("Player has left game: " + friendID);
                 sendPostGameMessage(friendID);
             }
         }
@@ -116,7 +118,12 @@ public class SteamWorksController {
      * Method is currently a stub.
      */
     public void sendLobbyChatMessage(SteamID id) {
-        messageManager.sendMessage(id, "Good Luck On Your Game!");
+        try {
+            Thread.sleep(1000);
+            messageManager.sendMessage(id, "Good Luck On Your Game!");
+        } catch (InterruptedException e) {
+            System.out.println("Error with thread.sleep");
+        }
     }
 
     /**
