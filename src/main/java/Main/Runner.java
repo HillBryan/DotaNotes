@@ -19,7 +19,7 @@ public class Runner {
         initialize();
 
         // Controller object for all operations with the SteamWorks API.
-        ApplicationController controller = ApplicationController.getInstance();
+        SteamWorksController controller = SteamWorksController.getInstance();
 
         // Initial parse of friend list state.
         controller.refreshClientSet();

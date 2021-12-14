@@ -12,7 +12,7 @@ import java.util.HashSet;
  * @Author Bryan Hill
  */
 
-public class ApplicationController {
+public class SteamWorksController {
 
     public final int DOTA_2_ID = 570;
     private SteamID personalID;
@@ -21,9 +21,9 @@ public class ApplicationController {
     private SteamUser steamUser;                    // SteamUser for interacting with user information.
     private SteamFriends steamFriends;              // SteamFriends for interacting with steam friends information.
     private MessageManager messageManager;          // MessageManager for sending steam messages.
-    private static ApplicationController instance;  // Singleton instance.
+    private static SteamWorksController instance;  // Singleton instance.
 
-    private ApplicationController() {
+    private SteamWorksController() {
         printSpacer();
         inDotaClientSet = new HashSet<>();
         inDotaMatchSet = new HashSet<>();
@@ -136,11 +136,11 @@ public class ApplicationController {
 
     /**
      * Method to get instance of this class. Singleton pattern.
-     * @return running instance of ApplicationController.
+     * @return running instance of SteamWorksController.
      */
-    public static ApplicationController getInstance() {
+    public static SteamWorksController getInstance() {
         if (instance == null) {
-            instance = new ApplicationController();
+            instance = new SteamWorksController();
         }
         return instance;
     }

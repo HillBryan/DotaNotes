@@ -1,6 +1,6 @@
 package Callbacks;
 
-import Main.ApplicationController;
+import Main.SteamWorksController;
 import com.codedisaster.steamworks.SteamFriends;
 import com.codedisaster.steamworks.SteamFriendsCallback;
 import com.codedisaster.steamworks.SteamID;
@@ -33,7 +33,7 @@ public class SteamFriendsImpl implements SteamFriendsCallback {
 
         // Getting current game.
         SteamFriends.FriendGameInfo info = new SteamFriends.FriendGameInfo();
-        ApplicationController.getInstance().getSteamFriends().getFriendGamePlayed(steamID, info);
+        SteamWorksController.getInstance().getSteamFriends().getFriendGamePlayed(steamID, info);
 
         // Adding to dota client set.
         addOrRemoveFromClientSet(info, steamID);
@@ -60,10 +60,10 @@ public class SteamFriendsImpl implements SteamFriendsCallback {
 
         // Getting current game.
         SteamFriends.FriendGameInfo info = new SteamFriends.FriendGameInfo();
-        ApplicationController.getInstance().getSteamFriends().getFriendGamePlayed(steamID, info);
+        SteamWorksController.getInstance().getSteamFriends().getFriendGamePlayed(steamID, info);
 
         // Getting rich context
-        String richPresence = ApplicationController.
+        String richPresence = SteamWorksController.
                 getInstance().
                 getSteamFriends().
                 getFriendRichPresence(steamID, "steam_display");
@@ -74,7 +74,7 @@ public class SteamFriendsImpl implements SteamFriendsCallback {
         // If "hero-select" is enabled
         System.out.println(richPresence);
         if (richPresence.contains("Select")) {
-            ApplicationController.getInstance().addToInGameSet(steamID);
+            SteamWorksController.getInstance().addToInGameSet(steamID);
             System.out.println(
                     "GameID: " + info.getGameID() + "\n" +
                     "GameIP: " + info.getGameIP() + "\n" +
@@ -83,7 +83,7 @@ public class SteamFriendsImpl implements SteamFriendsCallback {
             );
         }
         if (richPresence.equals("Main Menu")) {
-            ApplicationController.getInstance().removeFromInGameSet(steamID);
+            SteamWorksController.getInstance().removeFromInGameSet(steamID);
         }
     }
 
@@ -103,11 +103,11 @@ public class SteamFriendsImpl implements SteamFriendsCallback {
      * @param steamID Object identifying the user being examined.
      */
     public void addOrRemoveFromClientSet(SteamFriends.FriendGameInfo info, SteamID steamID) {
-        if (info.getGameID() == ApplicationController.getInstance().DOTA_2_ID) {
-            ApplicationController.getInstance().addToClientSet(steamID);
+        if (info.getGameID() == SteamWorksController.getInstance().DOTA_2_ID) {
+            SteamWorksController.getInstance().addToClientSet(steamID);
         } else {
-            ApplicationController.getInstance().removeFromClientSet(steamID);
-            ApplicationController.getInstance().removeFromInGameSet(steamID);
+            SteamWorksController.getInstance().removeFromClientSet(steamID);
+            SteamWorksController.getInstance().removeFromInGameSet(steamID);
         }
     }
 
