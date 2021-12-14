@@ -55,6 +55,7 @@ public class Runner {
         } catch (SteamException e) {
             System.out.println("Steam auth Error: " + e);
         }
-        System.out.println("SteamWorks Login Success!");
+        System.out.println("\n**********************************\n");
+        System.out.println("SteamWorks: Login Success!");
     }
 }

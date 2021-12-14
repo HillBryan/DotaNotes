@@ -24,6 +24,7 @@ public class ApplicationController {
     private static ApplicationController instance;  // Singleton instance.
 
     private ApplicationController() {
+        printSpacer();
         inDotaClientSet = new HashSet<>();
         inDotaMatchSet = new HashSet<>();
         steamUser = new SteamUser(new SteamUserImpl());
@@ -33,6 +34,7 @@ public class ApplicationController {
         ));
         messageManager = new MessageManager();
         personalID = steamUser.getSteamID();
+        printSpacer();
     }
 
     /**
@@ -122,6 +124,13 @@ public class ApplicationController {
      */
     public void sendPostGameMessage(SteamID id) {
         //messageManager.sendMessage(id, "Nice Job Feeding!");
+    }
+
+    /**
+     * Method used to improve console output.
+     */
+    public void printSpacer() {
+        System.out.println("\n**********************************\n");
     }
 
 

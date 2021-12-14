@@ -44,7 +44,7 @@ public class MessageManager {
      * Method for connecting to Steam.
      */
     public void connectToSteam() {
-        System.out.println("Connecting to steam...");
+        System.out.println("SteamKit: Connecting to steam...");
 
         // initiate the connection
         steamClient.connect();
@@ -79,7 +79,7 @@ public class MessageManager {
      * @param callback
      */
     private void onConnected(ConnectedCallback callback) {
-        System.out.println("Connected to Steam! Logging in " + user + "...");
+        System.out.println("SteamKit: Connected to Steam! Logging in " + user + "...");
         LogOnDetails details = new LogOnDetails();
         details.setUsername(user);
         details.setPassword(pass);
@@ -92,7 +92,7 @@ public class MessageManager {
      * @param callback
      */
     private void onDisconnected(DisconnectedCallback callback) {
-        System.out.println("Disconnected from Steam");
+        System.out.println("SteamKit: Disconnected from Steam");
     }
 
     /**
@@ -102,13 +102,13 @@ public class MessageManager {
     private void onLoggedOn(LoggedOnCallback callback) {
         if (callback.getResult() != EResult.OK) {
             if (callback.getResult() == EResult.AccountLogonDenied) {
-                System.out.println("Unable to logon to Steam: This account is SteamGuard protected.");
+                System.out.println("SteamKit: Unable to logon to Steam: This account is SteamGuard protected.");
                 return;
             }
-            System.out.println("Unable to logon to Steam: " + callback.getResult());
+            System.out.println("SteamKit: Unable to logon to Steam: " + callback.getResult());
             return;
         }
-        System.out.println("Successfully logged on!");
+        System.out.println("SteamKit: Successfully logged on!");
     }
 
     /**
@@ -116,7 +116,7 @@ public class MessageManager {
      * @param callback
      */
     private void onLoggedOff(LoggedOffCallback callback) {
-        System.out.println("Logged off of Steam: " + callback.getResult());
+        System.out.println("SteamKit: Logged off of Steam: " + callback.getResult());
     }
 
     /**
