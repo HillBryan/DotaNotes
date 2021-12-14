@@ -57,7 +57,7 @@ public class ApplicationController {
                 }
             }
         }
-        System.out.println("In dota on load: " + this.inDotaClientSet);
+        System.out.println("Friends in Dota 2 On Load: " + this.inDotaClientSet);
     }
 
     /**
