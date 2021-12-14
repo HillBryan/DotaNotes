@@ -72,15 +72,8 @@ public class SteamFriendsImpl implements SteamFriendsCallback {
         addOrRemoveFromClientSet(info, steamID);
 
         // If "hero-select" is enabled
-        System.out.println(richPresence);
         if (richPresence.contains("Select")) {
             SteamWorksController.getInstance().addToInGameSet(steamID);
-            System.out.println(
-                    "GameID: " + info.getGameID() + "\n" +
-                    "GameIP: " + info.getGameIP() + "\n" +
-                    "Game Port: " + info.getGamePort() + "\n" +
-                    "Game Lobby: " + info.getSteamIDLobby()
-            );
         }
         if (richPresence.equals("Main Menu")) {
             SteamWorksController.getInstance().removeFromInGameSet(steamID);
