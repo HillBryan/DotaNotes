@@ -116,14 +116,14 @@ public class SteamWorksController {
      * Method is currently a stub.
      */
     public void sendLobbyChatMessage(SteamID id) {
-        //messageManager.sendMessage(id, "Good Luck On Your Game!");
+        messageManager.sendMessage(id, "Good Luck On Your Game!");
     }
 
     /**
      * Method is currently a stub.
      */
     public void sendPostGameMessage(SteamID id) {
-        //messageManager.sendMessage(id, "Nice Job Feeding!");
+        messageManager.sendMessage(id, "Nice Job Feeding!");
     }
 
     /**
