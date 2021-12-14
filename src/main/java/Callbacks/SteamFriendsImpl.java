@@ -75,6 +75,12 @@ public class SteamFriendsImpl implements SteamFriendsCallback {
         System.out.println(richPresence);
         if (richPresence.contains("Select")) {
             ApplicationController.getInstance().addToInGameSet(steamID);
+            System.out.println(
+                    "GameID: " + info.getGameID() + "\n" +
+                    "GameIP: " + info.getGameIP() + "\n" +
+                    "Game Port: " + info.getGamePort() + "\n" +
+                    "Game Lobby: " + info.getSteamIDLobby()
+            );
         }
         if (richPresence.equals("Main Menu")) {
             ApplicationController.getInstance().removeFromInGameSet(steamID);
