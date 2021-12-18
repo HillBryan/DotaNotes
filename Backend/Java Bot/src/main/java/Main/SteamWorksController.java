@@ -1,5 +1,6 @@
 package Main;
 
+import API_Interactions.SpectatorAPI;
 import Callbacks.SteamFriendsImpl;
 import Callbacks.SteamUserImpl;
 import com.codedisaster.steamworks.SteamFriends;
@@ -21,7 +22,8 @@ public class SteamWorksController {
     private SteamUser steamUser;                    // SteamUser for interacting with user information.
     private SteamFriends steamFriends;              // SteamFriends for interacting with steam friends information.
     private MessageManager messageManager;          // MessageManager for sending steam messages.
-    private static SteamWorksController instance;  // Singleton instance.
+    private SpectatorAPI spectatorAPI;
+    private static SteamWorksController instance;   // Singleton instance.
 
     private SteamWorksController() {
         printSpacer();
@@ -33,6 +35,7 @@ public class SteamWorksController {
                 inDotaMatchSet
         ));
         messageManager = new MessageManager();
+        spectatorAPI = new SpectatorAPI();
         personalID = steamUser.getSteamID();
         printSpacer();
     }
@@ -120,7 +123,7 @@ public class SteamWorksController {
     public void sendLobbyChatMessage(SteamID id) {
         try {
             Thread.sleep(1000);
-            messageManager.sendMessage(id, "Good Luck On Your Game!");
+            messageManager.sendMessage(id, spectatorAPI.requestSteamServerID(id));
         } catch (InterruptedException e) {
             System.out.println("Error with thread.sleep");
         }
