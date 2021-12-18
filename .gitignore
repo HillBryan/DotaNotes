@@ -40,7 +40,4 @@ jspm_packages
 .node_repl_history
 
 # config information
-config.js
-.env
-sentry
 
