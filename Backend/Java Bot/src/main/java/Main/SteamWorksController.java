@@ -8,6 +8,8 @@ import com.codedisaster.steamworks.SteamID;
 import com.codedisaster.steamworks.SteamUser;
 
 import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.Queue;
 
 /**
  * @Author Bryan Hill
@@ -19,6 +21,7 @@ public class SteamWorksController {
     private SteamID personalID;
     private HashSet<SteamID> inDotaClientSet;       // Set for friends in Dota.
     private HashSet<SteamID> inDotaMatchSet;        // Set for friends in current match.
+    private Queue<SteamID> presenceQueue;           // Queue for handling input.
     private SteamUser steamUser;                    // SteamUser for interacting with user information.
     private SteamFriends steamFriends;              // SteamFriends for interacting with steam friends information.
     private MessageManager messageManager;          // MessageManager for sending steam messages.
@@ -29,11 +32,9 @@ public class SteamWorksController {
         printSpacer();
         inDotaClientSet = new HashSet<>();
         inDotaMatchSet = new HashSet<>();
+        presenceQueue = new LinkedList<>();
         steamUser = new SteamUser(new SteamUserImpl());
-        steamFriends = new SteamFriends(new SteamFriendsImpl(
-                inDotaClientSet,
-                inDotaMatchSet
-        ));
+        steamFriends = new SteamFriends(new SteamFriendsImpl());
         messageManager = new MessageManager();
         spectatorAPI = new SpectatorAPI();
         personalID = steamUser.getSteamID();
@@ -123,9 +124,60 @@ public class SteamWorksController {
     public void sendLobbyChatMessage(SteamID id) {
         try {
             Thread.sleep(1000);
-            messageManager.sendMessage(id, spectatorAPI.requestSteamServerID(id));
+            messageManager.sendMessage(id, "Server Steam ID: " + spectatorAPI.requestSteamServerID(id));
         } catch (InterruptedException e) {
             System.out.println("Error with thread.sleep");
+        }
+    }
+
+    /**
+     * Method will handle the SteamIDs one at a time.
+     */
+    public void processQueue() {
+        while (!presenceQueue.isEmpty()) {
+            SteamID steamID = presenceQueue.poll();
+            handlePresenceChange(steamID);
+        }
+    }
+
+    /**
+     * Method will determine if friend has entered or left Dota or a dota game.
+     * @param steamID The SteamID of the friend.
+     */
+    public void handlePresenceChange(SteamID steamID) {
+        // Getting current game.
+        SteamFriends.FriendGameInfo info = new SteamFriends.FriendGameInfo();
+        SteamWorksController.getInstance().getSteamFriends().getFriendGamePlayed(steamID, info);
+
+        // Getting rich context
+        String richPresence = SteamWorksController.
+                getInstance().
+                getSteamFriends().
+                getFriendRichPresence(steamID, "steam_display");
+
+        // Adding to dota client set.
+        addOrRemoveFromClientSet(info, steamID);
+
+        // If "hero-select" is enabled
+        if (richPresence.contains("Select")) {
+            SteamWorksController.getInstance().addToInGameSet(steamID);
+        }
+        if (richPresence.equals("Main Menu")) {
+            SteamWorksController.getInstance().removeFromInGameSet(steamID);
+        }
+    }
+
+    /**
+     * Method will remove or add users to the Dota 2 client set based on if they are playing the game.
+     * @param info Object to information on user's current game they are playing.
+     * @param steamID Object identifying the user being examined.
+     */
+    public void addOrRemoveFromClientSet(SteamFriends.FriendGameInfo info, SteamID steamID) {
+        if (info.getGameID() == SteamWorksController.getInstance().DOTA_2_ID) {
+            SteamWorksController.getInstance().addToClientSet(steamID);
+        } else {
+            SteamWorksController.getInstance().removeFromClientSet(steamID);
+            SteamWorksController.getInstance().removeFromInGameSet(steamID);
         }
     }
 
@@ -185,5 +237,13 @@ public class SteamWorksController {
      */
     public MessageManager getMessageManager() {
         return messageManager;
+    }
+
+    /**
+     * Getter for the presence queue.
+     * @return Queue<SteamID> presenceQueue.
+     */
+    public Queue<SteamID> getPresenceQueue() {
+        return presenceQueue;
     }
 }

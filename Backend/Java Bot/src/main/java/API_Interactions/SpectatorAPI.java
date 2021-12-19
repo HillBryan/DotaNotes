@@ -1,38 +1,38 @@
 package API_Interactions;
 
 import com.codedisaster.steamworks.SteamID;
-import org.restlet.Response;
-import org.restlet.resource.ClientResource;
-
-import java.io.IOException;
+import java.io.*;
+import java.net.*;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.time.*;
 
 public class SpectatorAPI {
 
-    public SpectatorAPI() {
+    HttpClient client;
 
+    public SpectatorAPI() {
+        client = HttpClient.newBuilder()
+                .connectTimeout(Duration.ofSeconds(10))
+                .build();
     }
 
     public String requestSteamServerID(SteamID steamID) {
 
         String steam64 = getSteamID64(steamID);
-        ClientResource resource = new ClientResource("http://localhost:3000/livematch/" + steam64);
+        HttpResponse response = null;
 
         try {
-            Response response = resource.getResponse();
-
-            if (response.getStatus().isSuccess()) {
-                System.out.println("Success! " + response.getStatus());
-                return (response.getEntity().getText());
-            } else {
-                System.out.println("ERROR! " + response.getStatus());
-                throw new IOException("Could not query spectator api.");
-            }
+            URI uri = URI.create("http://localhost:3000/livematch/" + steam64);
+            HttpRequest request = HttpRequest.newBuilder().uri(uri).build();
+            response = client.send(request, HttpResponse.BodyHandlers.ofString());
         } catch (Exception e) {
-            System.out.println("Error connecting to API!");
+            e.printStackTrace();
         }
 
-        // If one gets here then there is an error.
-        return "ERROR";
+        return response.body().toString();
+
     }
 
     public String getSteamID64(SteamID steamID) {
