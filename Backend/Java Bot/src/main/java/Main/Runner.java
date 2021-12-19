@@ -34,6 +34,7 @@ public class Runner {
 
             public void run() {
                 SteamAPI.runCallbacks();
+                controller.processQueue();
                 int currentSize = controller.getInDotaClientSet().size();
 
                 if (currentSize != clientSize) {

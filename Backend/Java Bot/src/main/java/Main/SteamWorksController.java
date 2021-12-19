@@ -123,8 +123,10 @@ public class SteamWorksController {
      */
     public void sendLobbyChatMessage(SteamID id) {
         try {
-            Thread.sleep(1000);
+            Thread.sleep(500);
+            System.out.println("Sending Message to: " + id);
             messageManager.sendMessage(id, "Server Steam ID: " + spectatorAPI.requestSteamServerID(id));
+            Thread.sleep(500);
         } catch (InterruptedException e) {
             System.out.println("Error with thread.sleep");
         }
