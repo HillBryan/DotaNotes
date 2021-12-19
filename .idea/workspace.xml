@@ -1,25 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="fdb71246-186f-499f-b380-2e2ee569ad79" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/aws.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Callbacks/SteamFriendsImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Callbacks/SteamUserImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Main/MessageManager.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Main/Runner.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Main/SteamWorksController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/steam_appid.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Callbacks/SteamFriendsImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Callbacks/SteamUserImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Main/Runner$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Main/Runner.class" beforeDir="false" />
+    <list default="true" id="fdb71246-186f-499f-b380-2e2ee569ad79" name="Changes" comment="Changes">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/JS_Spectator/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/JS_Spectator/config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/JS_Spectator/helpers/botConnect.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/JS_Spectator/helpers/botConnect.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/JS_Spectator/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/JS_Spectator/package-lock.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,7 +27,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/Backend/Java Bot" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
@@ -84,6 +70,7 @@
       <updated>1639800239391</updated>
       <workItem from="1639800240735" duration="238000" />
       <workItem from="1639800498152" duration="37000" />
+      <workItem from="1639875005244" duration="332000" />
     </task>
     <servers />
   </component>

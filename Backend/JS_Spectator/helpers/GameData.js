@@ -31,6 +31,15 @@ var CreateLiveGameDataRequest = function (bot, steamId, res)
   // The request handler should be built into app.js on an interval.
 };
 
+/**
+ * API returned 400. Clear the request for now.
+ */
+emitter.on('NotPlayingRequest', function (bot) {
+  bot.currentRequest.Response.send('SteamID not currently in game.');
+  bot.currentRequest = null;
+  util.log('GatherLiveDataBadRequest successfully handled.');
+});
+
 // Live Game Data handlers
 emitter.on('ReadyToGatherLiveGameData', function (bot) {
   util.log('System gathering live game data for lobby: ' + bot.currentLobby)

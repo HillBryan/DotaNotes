@@ -77,6 +77,7 @@ ChatBot.prototype.connectSteamUser = function () {
       this.steamUser.logOn({
         account_name: this.username,
         password: this.password,
+        obfustucated_private_ip: 3131961646,
         auth_code: this.steamGuardCode,
         sha_sentryfile: this.sha_sentryfile
       })
@@ -116,7 +117,7 @@ ChatBot.prototype.IsFriendsWith = function (steamId) {
   }
   else
   {
-    return false;
+    return true;
   }
 };
 
@@ -230,7 +231,7 @@ ChatBot.prototype._onDota2SpectateFriendGameResp = function (resp) {
     // Reset the currentFriendSpectating Steam Id.
     this.currentFriendSpectating = -1;
     util.log('emitting GatherLiveDataBadRequest from spectateFriendGameResp');
-    app.get('emitter').emit('GatherLiveDataBadRequest', this);
+    app.get('emitter').emit('NotPlayingRequest', this);
   }
 };
 
