@@ -1,5 +1,6 @@
 package Main;
 
+import API_Interactions.DotaAPI;
 import API_Interactions.SpectatorAPI;
 import Callbacks.SteamFriendsImpl;
 import Callbacks.SteamUserImpl;
@@ -9,6 +10,7 @@ import com.codedisaster.steamworks.SteamUser;
 
 import java.util.HashSet;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 
 /**
@@ -25,7 +27,8 @@ public class SteamWorksController {
     private SteamUser steamUser;                    // SteamUser for interacting with user information.
     private SteamFriends steamFriends;              // SteamFriends for interacting with steam friends information.
     private MessageManager messageManager;          // MessageManager for sending steam messages.
-    private SpectatorAPI spectatorAPI;
+    private SpectatorAPI spectatorAPI;              // API for getting steam_server_ids.
+    private DotaAPI dotaAPI;
     private static SteamWorksController instance;   // Singleton instance.
 
     private SteamWorksController() {
@@ -37,6 +40,7 @@ public class SteamWorksController {
         steamFriends = new SteamFriends(new SteamFriendsImpl());
         messageManager = new MessageManager();
         spectatorAPI = new SpectatorAPI();
+        dotaAPI = new DotaAPI();
         personalID = steamUser.getSteamID();
         printSpacer();
     }
@@ -93,7 +97,6 @@ public class SteamWorksController {
             this.inDotaMatchSet.add(friendID);
 
             System.out.println("Player has joined game: " + friendID);
-            // TODO: This is where message would be sent.
             sendLobbyChatMessage(friendID);
         }
     }
@@ -111,7 +114,6 @@ public class SteamWorksController {
             this.steamFriends.getFriendGamePlayed(friendID, info);
 
             if (info.getGameID() == this.DOTA_2_ID) {
-                // TODO: This is where message would be sent.
                 System.out.println("Player has left game: " + friendID);
                 sendPostGameMessage(friendID);
             }
@@ -125,11 +127,26 @@ public class SteamWorksController {
         try {
             Thread.sleep(500);
             System.out.println("Sending Message to: " + id);
-            messageManager.sendMessage(id, "Server Steam ID: " + spectatorAPI.requestSteamServerID(id));
+            String steam_server_id = spectatorAPI.requestSteamServerID(id);
+            String message = getPlayerMessage(steam_server_id);
+            messageManager.sendMessage(id, message);
             Thread.sleep(500);
         } catch (InterruptedException e) {
             System.out.println("Error with thread.sleep");
         }
+    }
+
+    public String getPlayerMessage(String server_steam_id) {
+        List<DotaAPI.PlayerInfo> players = dotaAPI.getPlayersFromServer(server_steam_id);
+        String message = "Players in lobby:\n";
+
+        for (int i = 0; i < players.size(); i++) {
+            DotaAPI.PlayerInfo info = players.get(i);
+            message += "Player #" + i + ": " + info.personaName + ", " + info.steamID + "\n";
+        }
+
+        return message;
+
     }
 
     /**
@@ -160,8 +177,8 @@ public class SteamWorksController {
         // Adding to dota client set.
         addOrRemoveFromClientSet(info, steamID);
 
-        // If "hero-select" is enabled
-        if (richPresence.contains("Select")) {
+        // If friend is loaded in-game.
+        if (richPresence.toLowerCase().contains("lvl") || richPresence.toLowerCase().contains("level")) {
             SteamWorksController.getInstance().addToInGameSet(steamID);
         }
         if (richPresence.equals("Main Menu")) {

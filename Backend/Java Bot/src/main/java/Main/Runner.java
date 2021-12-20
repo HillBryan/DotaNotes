@@ -1,5 +1,6 @@
 package Main;
 
+import API_Interactions.DotaAPI;
 import API_Interactions.SpectatorAPI;
 import com.codedisaster.steamworks.SteamAPI;
 import com.codedisaster.steamworks.SteamException;
