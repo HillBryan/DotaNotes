@@ -69,12 +69,15 @@ public class MessageManager {
         String idString = id.toString();
         Long idLong = Long.parseLong(idString, 16);
 
+        System.out.println("Sending message: " + message + " To: " + id);
         // Sending Message with new SteamKit SteamID.
         steamFriends.sendChatMessage(
                 new in.dragonbra.javasteam.types.SteamID(idLong),
                 EChatEntryType.ChatMsg,
                 message
         );
+
+        System.out.println("Message sent!");
     }
 
     /**

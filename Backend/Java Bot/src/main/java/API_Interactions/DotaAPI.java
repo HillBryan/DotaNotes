@@ -24,6 +24,8 @@ public class DotaAPI extends BaseAPI{
      */
     public List<PlayerInfo> getPlayersFromServer(String server_steam_id) {
 
+        System.out.println("Received server_steam_id: " + server_steam_id);
+
         URI endpoint = URI.create(getEndpoint(server_steam_id));
         HttpRequest request = HttpRequest.newBuilder().uri(endpoint).build();
         HttpResponse response = null;
@@ -40,6 +42,8 @@ public class DotaAPI extends BaseAPI{
         }
 
         List<PlayerInfo> players = getPlayersFromBody(response.body().toString());
+
+        System.out.println("Sending Back Players: " + printPlayers(players));
         return players;
     }
 
@@ -82,6 +86,14 @@ public class DotaAPI extends BaseAPI{
         }
 
         return players;
+    }
+
+    public void printPlayers(List<PlayerInfo> players) {
+        System.out.print("Players: ");
+        for (PlayerInfo info : players) {
+            System.out.print(info.personaName + ",");
+        }
+        System.out.println();
     }
 
     public class PlayerInfo {

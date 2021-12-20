@@ -20,6 +20,8 @@ public class SpectatorAPI extends BaseAPI {
         String steam64 = getSteamID64(steamID);
         HttpResponse response = null;
 
+        System.out.println("Received SteamID: " + steamID)
+
         try {
             URI uri = URI.create("http://localhost:3000/livematch/" + steam64);
             HttpRequest request = HttpRequest.newBuilder().uri(uri).build();
@@ -27,6 +29,8 @@ public class SpectatorAPI extends BaseAPI {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        System.out.println("Sending back server_steam_id: " + response.body().toString());
 
         return response.body().toString();
     }

@@ -155,6 +155,7 @@ public class SteamWorksController {
     public void processQueue() {
         while (!presenceQueue.isEmpty()) {
             SteamID steamID = presenceQueue.poll();
+            System.out.println("Popping id: " + steamID + " off the queue.");
             handlePresenceChange(steamID);
         }
     }
