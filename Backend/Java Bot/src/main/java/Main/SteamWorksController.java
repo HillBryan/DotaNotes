@@ -138,11 +138,17 @@ public class SteamWorksController {
 
     public String getPlayerMessage(String server_steam_id) {
         List<DotaAPI.PlayerInfo> players = dotaAPI.getPlayersFromServer(server_steam_id);
+        if (players.size() == 0) {
+            return "Dota 2 Game Coordinator is unresponsive";
+        }
         String message = "Players in lobby:\n";
 
         for (int i = 0; i < players.size(); i++) {
             DotaAPI.PlayerInfo info = players.get(i);
-            message += "Player #" + i + ": " + info.personaName + ", " + info.steamID + "\n";
+            message += "Player #" + i + ": " +
+                    info.steamID + ", " +
+                    "Team: " + (i / 5) + ", " +
+                    info.personaName + "\n";
         }
 
         return message;
@@ -178,7 +184,7 @@ public class SteamWorksController {
         // Adding to dota client set.
         addOrRemoveFromClientSet(info, steamID);
 
-        // If friend is loaded in-game.
+        // If friend is loaded in-game.x
         if (richPresence.toLowerCase().contains("lvl") || richPresence.toLowerCase().contains("level")) {
             SteamWorksController.getInstance().addToInGameSet(steamID);
         }

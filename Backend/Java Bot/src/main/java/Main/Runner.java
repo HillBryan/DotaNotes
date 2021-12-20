@@ -45,7 +45,7 @@ public class Runner {
                 }
                 clientSize = controller.getInDotaClientSet().size();
             }
-        }, 0, 1000);
+        }, 0, 2000);
     }
 
     /**

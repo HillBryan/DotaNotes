@@ -31,10 +31,11 @@ public class DotaAPI extends BaseAPI{
         HttpResponse response = null;
 
         // Have to poll multiple times because endpoint can be unreliable.
-        while (response == null || response.statusCode() != 200) {
-
+        for (int i = 0; i < 10; i++) {
+            System.out.println("Polling API");
             try {
                 response = client.send(request, HttpResponse.BodyHandlers.ofString());
+                if (response.statusCode() == 200) break;
 
             } catch (Exception e) {
                 e.printStackTrace();
