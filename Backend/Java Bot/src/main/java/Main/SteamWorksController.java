@@ -266,4 +266,13 @@ public class SteamWorksController {
     public Queue<SteamID> getPresenceQueue() {
         return presenceQueue;
     }
+
+
+    /**
+     * Getter for the personal SteamID.
+     * @return the SteamID of the running account.
+     */
+    public SteamID getPersonalID() {
+        return personalID;
+    }
 }

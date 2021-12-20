@@ -43,7 +43,8 @@ public class DotaAPI extends BaseAPI{
 
         List<PlayerInfo> players = getPlayersFromBody(response.body().toString());
 
-        System.out.println("Sending Back Players: " + printPlayers(players));
+        System.out.println("Sending Back Players: ");
+        printPlayers(players);
         return players;
     }
 
