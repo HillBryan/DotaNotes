@@ -5,6 +5,9 @@ import java.net.*;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
+/**
+ * @Author Bryan Hill
+ */
 public class SpectatorAPI extends BaseAPI {
 
     public SpectatorAPI() {

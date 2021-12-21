@@ -23,9 +23,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8d05bec3-8704-4b38-8be1-71bf46fcf2fc" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Main/FriendStateManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Messages/MessageFactory.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/API_Interactions/BaseAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/API_Interactions/BaseAPI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/API_Interactions/DotaAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/API_Interactions/DotaAPI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Callbacks/SteamFriendsImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Callbacks/SteamFriendsImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/API_Interactions/SpectatorAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/API_Interactions/SpectatorAPI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Main/MessageManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main/SteamKitController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Main/Runner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main/Runner.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Main/SteamWorksController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main/SteamWorksController.java" afterDir="false" />
     </list>
@@ -59,6 +64,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
@@ -132,25 +138,29 @@
       <screen x="0" y="23" width="1440" height="794" />
     </state>
     <state x="457" y="217" key="#com.intellij.ide.util.TreeClassChooserDialog/0.23.1440.794@0.23.1440.794" timestamp="1639876065728" />
-    <state width="1398" height="402" key="GridCell.Tab.0.bottom" timestamp="1639989656080">
+    <state x="226" y="23" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1640045776110">
       <screen x="0" y="23" width="1440" height="794" />
     </state>
-    <state width="1398" height="402" key="GridCell.Tab.0.bottom/0.23.1440.794@0.23.1440.794" timestamp="1639989656080" />
+    <state x="226" y="23" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.23.1440.794@0.23.1440.794" timestamp="1640045776110" />
+    <state width="1398" height="294" key="GridCell.Tab.0.bottom" timestamp="1640048469515">
+      <screen x="0" y="23" width="1440" height="794" />
+    </state>
+    <state width="1398" height="294" key="GridCell.Tab.0.bottom/0.23.1440.794@0.23.1440.794" timestamp="1640048469515" />
     <state width="1398" height="203" key="GridCell.Tab.0.bottom/0.23.1440.797@0.23.1440.797" timestamp="1639811736630" />
-    <state width="1398" height="402" key="GridCell.Tab.0.center" timestamp="1639989656078">
+    <state width="1398" height="294" key="GridCell.Tab.0.center" timestamp="1640048469514">
       <screen x="0" y="23" width="1440" height="794" />
     </state>
-    <state width="1398" height="402" key="GridCell.Tab.0.center/0.23.1440.794@0.23.1440.794" timestamp="1639989656078" />
+    <state width="1398" height="294" key="GridCell.Tab.0.center/0.23.1440.794@0.23.1440.794" timestamp="1640048469514" />
     <state width="1398" height="203" key="GridCell.Tab.0.center/0.23.1440.797@0.23.1440.797" timestamp="1639811736629" />
-    <state width="1398" height="402" key="GridCell.Tab.0.left" timestamp="1639989656078">
+    <state width="1398" height="294" key="GridCell.Tab.0.left" timestamp="1640048469513">
       <screen x="0" y="23" width="1440" height="794" />
     </state>
-    <state width="1398" height="402" key="GridCell.Tab.0.left/0.23.1440.794@0.23.1440.794" timestamp="1639989656078" />
+    <state width="1398" height="294" key="GridCell.Tab.0.left/0.23.1440.794@0.23.1440.794" timestamp="1640048469513" />
     <state width="1398" height="203" key="GridCell.Tab.0.left/0.23.1440.797@0.23.1440.797" timestamp="1639811736629" />
-    <state width="1398" height="402" key="GridCell.Tab.0.right" timestamp="1639989656079">
+    <state width="1398" height="294" key="GridCell.Tab.0.right" timestamp="1640048469514">
       <screen x="0" y="23" width="1440" height="794" />
     </state>
-    <state width="1398" height="402" key="GridCell.Tab.0.right/0.23.1440.794@0.23.1440.794" timestamp="1639989656079" />
+    <state width="1398" height="294" key="GridCell.Tab.0.right/0.23.1440.794@0.23.1440.794" timestamp="1640048469514" />
     <state width="1398" height="203" key="GridCell.Tab.0.right/0.23.1440.797@0.23.1440.797" timestamp="1639811736629" />
     <state x="258" y="82" key="Maven.ArtifactSearchDialog" timestamp="1639892071602">
       <screen x="0" y="23" width="1440" height="794" />

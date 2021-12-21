@@ -8,6 +8,9 @@ import java.net.http.HttpResponse;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @Author Bryan Hill
+ */
 public class DotaAPI extends BaseAPI{
 
     // TODO: Move to config file.

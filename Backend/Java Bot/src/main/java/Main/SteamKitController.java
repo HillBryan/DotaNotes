@@ -16,17 +16,18 @@ import in.dragonbra.javasteam.steam.steamclient.callbacks.DisconnectedCallback;
 /**
  * @Author Bryan Hill
  */
-public class MessageManager {
+public class SteamKitController {
 
     private SteamClient steamClient;
     private SteamFriends steamFriends;
     private CallbackManager manager;
     private SteamUser steamUser;
 
+    // TODO: Move to config file.
     private final String user = "dotarevenge004";
     private final String pass = "Revenge750461004";
 
-    public MessageManager() {
+    public SteamKitController() {
         // Steam Objects
         steamClient = new SteamClient();
         steamFriends = steamClient.getHandler(SteamFriends.class);
