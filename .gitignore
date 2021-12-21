@@ -6,6 +6,12 @@ npm-debug.log*
 # Java classes
 *.class
 
+# DS_Stories
+*.DS_Store
+
+#Intellij files
+.idea
+
 # Runtime data
 pids
 *.pid
