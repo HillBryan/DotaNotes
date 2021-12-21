@@ -5,6 +5,9 @@ import com.codedisaster.steamworks.SteamID;
 import java.net.http.HttpClient;
 import java.time.Duration;
 
+/**
+ * @Author Bryan Hill
+ */
 public abstract class BaseAPI {
 
     protected HttpClient client;

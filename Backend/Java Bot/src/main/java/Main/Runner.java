@@ -21,31 +21,47 @@ public class Runner {
         // Initializing Steam Libraries.
         initialize();
 
+        //Printing for console formatting.
+        printSpacer();
+
         // Controller object for all operations with the SteamWorks API.
         SteamWorksController controller = SteamWorksController.getInstance();
 
+        //Printing for console formatting.
+        printSpacer();
+
         // Initial parse of friend list state.
-        controller.refreshClientSet();
+        controller.getFriendStateManager().refreshClientSet();
 
         // Starting callback repeat timer.
         Timer t = new Timer();
         t.schedule(new TimerTask() {
 
-            int clientSize = controller.getInDotaClientSet().size();
+            int clientSize = getClientSetSize(controller);
 
             public void run() {
                 SteamAPI.runCallbacks();
                 controller.processQueue();
-                int currentSize = controller.getInDotaClientSet().size();
+
+                int currentSize = getClientSetSize(controller);
 
                 if (currentSize != clientSize) {
                     if (currentSize < clientSize) System.out.print("Friend has Left Dota: ");
                     else System.out.print("Friend has Joined Dota: ");
-                    System.out.println(controller.getInDotaClientSet());
+                    System.out.println(controller.getFriendStateManager().getInDotaClientSet());
                 }
-                clientSize = controller.getInDotaClientSet().size();
+                clientSize = getClientSetSize(controller);
             }
         }, 0, 2000);
+    }
+
+    /**
+     * Method for getting the size of the client set.
+     * @param controller SteamWorksController for managing SteamWorks activities.
+     * @return
+     */
+    public static int getClientSetSize(SteamWorksController controller) {
+        return controller.getFriendStateManager().getInDotaClientSet().size();
     }
 
     /**
@@ -63,5 +79,13 @@ public class Runner {
         }
         System.out.println("\n**********************************\n");
         System.out.println("SteamWorks: Login Success!");
+    }
+
+
+    /**
+     * Method used to improve console output.
+     */
+    public static void printSpacer() {
+        System.out.println("\n**********************************\n");
     }
 }
