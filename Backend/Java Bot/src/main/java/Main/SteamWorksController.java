@@ -54,7 +54,13 @@ public class SteamWorksController {
     public void sendPreGameMessage(SteamID id) {
         System.out.println("Sending Message to: " + id);
         String message = MessageFactory.getInstance().getPreGameMessage(id);
-        steamKitController.sendMessage(id, message);
+        try {
+            Thread.sleep(1000);
+            steamKitController.sendMessage(id, message);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
     /**
@@ -62,7 +68,7 @@ public class SteamWorksController {
      */
     public void sendPostGameMessage(SteamID id) {
         String message = MessageFactory.getInstance().getPostGameMessage(id);
-        steamKitController.sendMessage(id, "Nice Job Feeding!");
+        steamKitController.sendMessage(id, message);
     }
 
     /**

@@ -2,11 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fdb71246-186f-499f-b380-2e2ee569ad79" name="Changes" comment="Changes">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Java Bot/src/main/java/API_Interactions/DotaAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Java Bot/src/main/java/API_Interactions/DotaAPI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Java Bot/src/main/java/API_Interactions/SpectatorAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Java Bot/src/main/java/API_Interactions/SpectatorAPI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Java Bot/src/main/java/Callbacks/SteamFriendsImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Java Bot/src/main/java/Callbacks/SteamFriendsImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Java Bot/src/main/java/Main/MessageManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Java Bot/src/main/java/Main/MessageManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/JS_Spectator/helpers/botConnect.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/JS_Spectator/helpers/botConnect.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Java Bot/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Java Bot/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Java Bot/src/main/java/Main/SteamWorksController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Java Bot/src/main/java/Main/SteamWorksController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

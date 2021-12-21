@@ -1,6 +1,10 @@
 package API_Interactions;
 
+import ResponseObjects.Player;
+import ResponseObjects.RealtimeStats;
+import ResponseObjects.Team;
 import com.codedisaster.steamworks.SteamID;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.net.URI;
 import java.net.http.HttpRequest;
@@ -15,9 +19,10 @@ public class DotaAPI extends BaseAPI{
 
     // TODO: Move to config file.
     private final String API_KEY = "0F87F835643DA4DA3744229F7918527F";
+    private ObjectMapper objectMapper;
 
     public DotaAPI() {
-
+        objectMapper = new ObjectMapper();
     }
 
     /**
@@ -34,7 +39,7 @@ public class DotaAPI extends BaseAPI{
         HttpResponse response = null;
 
         // Have to poll multiple times because endpoint can be unreliable.
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 15; i++) {
             System.out.println("Polling API");
             try {
                 response = client.send(request, HttpResponse.BodyHandlers.ofString());
@@ -45,11 +50,22 @@ public class DotaAPI extends BaseAPI{
             }
         }
 
-        List<PlayerInfo> players = getPlayersFromBody(response.body().toString());
+        //List<PlayerInfo> players = getPlayersFromBody(response.body().toString());
+        try {
+            RealtimeStats stats = objectMapper.readValue(response.body().toString(), RealtimeStats.class);
+            for (Team team : stats.getTeams()) {
+                for (Player player : team.getPlayers()) {
+                    System.out.println(player.getAccountid());
+                }
+            }
+        }
+        catch(Exception e) {
+            e.printStackTrace();
+        }
 
-        System.out.println("Sending Back Players: ");
-        printPlayers(players);
-        return players;
+        //System.out.println("Sending Back Players: ");
+        //printPlayers(players);
+        return null;
     }
 
     /**

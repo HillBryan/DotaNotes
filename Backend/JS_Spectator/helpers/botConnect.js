@@ -131,18 +131,18 @@ ChatBot.prototype.processRequest = function () {
 
 ChatBot.prototype.spectateFriendGame = function (request) {
   var steamId = request.SteamId;
-  if (this.IsFriendsWith(steamId) && this.currentFriendSpectating != steamId)
+  if (this.IsFriendsWith(steamId))
   {
     util.log('Chatbot: ' + this.username + ' is connecting to ' + steamId + '\'s game.');
     this.dotaClient.spectateFriendGame(steamId);
     this.currentFriendSpectating = steamId;
   }
-  else if (this.IsFriendsWith(steamId) && this.currentFriendSpectating == steamId)
-  {
-    util.log('Bot is already spectating ' + steamId);
-    util.log('emitting ReadyToGatherLiveGameData from spectateFriendGame');
-    app.get('emitter').emit('ReadyToGatherLiveGameData', this);
-  }
+//  else if (this.IsFriendsWith(steamId) && this.currentFriendSpectating == steamId)
+//  {
+//    util.log('Bot is already spectating ' + steamId);
+//    util.log('emitting ReadyToGatherLiveGameData from spectateFriendGame');
+//    app.get('emitter').emit('ReadyToGatherLiveGameData', this);
+//  }
   else
   {
     util.log('emitting GatherLiveDataBadRequest from spectateFriendGame');
