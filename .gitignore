@@ -39,6 +39,9 @@ build/Release
 node_modules
 jspm_packages
 
+# Package lock
+package-lock.json
+
 # Optional npm cache directory
 .npm
 
