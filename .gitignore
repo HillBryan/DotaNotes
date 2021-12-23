@@ -50,3 +50,4 @@ package-lock.json
 
 # config information
 Config.java
+config.js
