@@ -6,9 +6,7 @@ public class GraphData {
 
     private List<Integer> graph_gold;
 
-    public GraphData() {
-
-    }
+    public GraphData() {}
 
     public List<Integer> getGraph_gold() {
         return graph_gold;

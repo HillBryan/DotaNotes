@@ -49,7 +49,7 @@ public class Runner {
                 }
                 clientSize = getClientSetSize(controller);
             }
-        }, 0, 2000);
+        }, 0, 1000);
     }
 
     /**

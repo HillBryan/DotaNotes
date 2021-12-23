@@ -11,9 +11,7 @@ public class Match {
     private int league_node_id;
     private int game_state;
 
-    public Match() {
-
-    }
+    public Match() {}
 
     public String getServer_steam_id() {
         return server_steam_id;

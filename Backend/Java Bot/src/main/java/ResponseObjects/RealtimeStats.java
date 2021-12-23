@@ -10,9 +10,7 @@ public class RealtimeStats {
     private GraphData graph_data;
     private boolean delta_frame;
 
-    public RealtimeStats() {
-
-    }
+    public RealtimeStats() {}
 
     public Match getMatch() {
         return match;

@@ -45,6 +45,8 @@ public class MessageFactory {
             }
         }
 
+        message += "MatchID: " + stats.getMatch().getMatch_id();
+
         return message;
     }
 

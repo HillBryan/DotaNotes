@@ -14,9 +14,7 @@ public class Team {
     private String team_logo_url;
     private List<Player> players;
 
-    public Team() {
-
-    }
+    public Team() {}
 
     public int getTeam_number() {
         return team_number;

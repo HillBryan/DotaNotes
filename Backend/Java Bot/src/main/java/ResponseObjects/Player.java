@@ -22,9 +22,7 @@ public class Player {
     private List<Integer> abilities;
     private List<Integer> items;
 
-    public Player() {
-
-    }
+    public Player() {}
 
     public int getAccountid() {
         return accountid;

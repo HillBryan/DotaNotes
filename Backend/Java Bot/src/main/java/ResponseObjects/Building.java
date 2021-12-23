@@ -11,9 +11,7 @@ public class Building {
     private double y;
     private boolean destroyed;
 
-    public Building() {
-
-    }
+    public Building() {}
 
     public int getTeam() {
         return team;

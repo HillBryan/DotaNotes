@@ -14,33 +14,22 @@ import java.util.HashSet;
 
 public class SteamFriendsImpl implements SteamFriendsCallback {
 
-    public SteamFriendsImpl() {
-    }
+    public SteamFriendsImpl() {}
 
     @Override
-    public void onSetPersonaNameResponse(boolean b, boolean b1, SteamResult steamResult) {
-
-    }
+    public void onSetPersonaNameResponse(boolean b, boolean b1, SteamResult steamResult) {}
 
     @Override
-    public void onPersonaStateChange(SteamID steamID, SteamFriends.PersonaChange personaChange) {
-
-    }
+    public void onPersonaStateChange(SteamID steamID, SteamFriends.PersonaChange personaChange) {}
 
     @Override
-    public void onGameOverlayActivated(boolean b) {
-
-    }
+    public void onGameOverlayActivated(boolean b) {}
 
     @Override
-    public void onGameLobbyJoinRequested(SteamID steamID, SteamID steamID1) {
-
-    }
+    public void onGameLobbyJoinRequested(SteamID steamID, SteamID steamID1) {}
 
     @Override
-    public void onAvatarImageLoaded(SteamID steamID, int i, int i1, int i2) {
-
-    }
+    public void onAvatarImageLoaded(SteamID steamID, int i, int i1, int i2) {}
 
     @Override
     public void onFriendRichPresenceUpdate(SteamID steamID, int i) {
@@ -52,12 +41,8 @@ public class SteamFriendsImpl implements SteamFriendsCallback {
     }
 
     @Override
-    public void onGameRichPresenceJoinRequested(SteamID steamID, String s) {
-
-    }
+    public void onGameRichPresenceJoinRequested(SteamID steamID, String s) {}
 
     @Override
-    public void onGameServerChangeRequested(String s, String s1) {
-
-    }
+    public void onGameServerChangeRequested(String s, String s1) {}
 }
