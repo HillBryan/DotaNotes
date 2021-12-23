@@ -1,5 +1,6 @@
 package Main;
 
+import Credentials.Config;
 import com.codedisaster.steamworks.SteamID;
 import in.dragonbra.javasteam.enums.EChatEntryType;
 import in.dragonbra.javasteam.enums.EPersonaState;
@@ -22,10 +23,6 @@ public class SteamKitController {
     private SteamFriends steamFriends;
     private CallbackManager manager;
     private SteamUser steamUser;
-
-    // TODO: Move to config file.
-    private final String user = "dotarevenge004";
-    private final String pass = "Revenge750461004";
 
     public SteamKitController() {
         // Steam Objects
@@ -86,10 +83,10 @@ public class SteamKitController {
      * @param callback
      */
     private void onConnected(ConnectedCallback callback) {
-        System.out.println("SteamKit: Connected to Steam! Logging in " + user + "...");
+        System.out.println("SteamKit: Connected to Steam! Logging in " + Config.USERNAME + "...");
         LogOnDetails details = new LogOnDetails();
-        details.setUsername(user);
-        details.setPassword(pass);
+        details.setUsername(Config.USERNAME);
+        details.setPassword(Config.PASSWORD);
         details.setLoginID(149);
         steamUser.logOn(details);
     }

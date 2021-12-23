@@ -1,5 +1,6 @@
 package API_Interactions;
 
+import Credentials.Config;
 import ResponseObjects.Player;
 import ResponseObjects.RealtimeStats;
 import ResponseObjects.Team;
@@ -17,8 +18,6 @@ import java.util.List;
  */
 public class DotaAPI extends BaseAPI{
 
-    // TODO: Move to config file.
-    private final String API_KEY = "0F87F835643DA4DA3744229F7918527F";
     private ObjectMapper objectMapper;
 
     public DotaAPI() {
@@ -75,7 +74,7 @@ public class DotaAPI extends BaseAPI{
      */
     public String getEndpoint(String server_steam_id) {
         return "https://api.steampowered.com/IDOTA2MatchStats_570/GetRealtimeStats/V001??"
-                + "key=" + API_KEY
+                + "key=" + Config.API_KEY
                 + "&server_steam_id=" + server_steam_id;
     }
 
