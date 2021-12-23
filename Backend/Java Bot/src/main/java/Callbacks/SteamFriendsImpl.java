@@ -1,12 +1,10 @@
 package Callbacks;
 
-import Main.SteamWorksController;
+import Steam_Controllers.SteamWorksController;
 import com.codedisaster.steamworks.SteamFriends;
 import com.codedisaster.steamworks.SteamFriendsCallback;
 import com.codedisaster.steamworks.SteamID;
 import com.codedisaster.steamworks.SteamResult;
-
-import java.util.HashSet;
 
 /**
  * @Author Bryan Hill

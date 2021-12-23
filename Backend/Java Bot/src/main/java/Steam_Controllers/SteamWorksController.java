@@ -1,4 +1,4 @@
-package Main;
+package Steam_Controllers;
 
 import Callbacks.SteamFriendsImpl;
 import Callbacks.SteamUserImpl;

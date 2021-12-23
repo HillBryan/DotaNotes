@@ -1,4 +1,4 @@
-package Main;
+package Steam_Controllers;
 
 import Credentials.Config;
 import com.codedisaster.steamworks.SteamID;

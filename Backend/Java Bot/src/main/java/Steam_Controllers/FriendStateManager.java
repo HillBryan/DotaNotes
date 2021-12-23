@@ -1,5 +1,6 @@
-package Main;
+package Steam_Controllers;
 
+import Steam_Controllers.SteamWorksController;
 import com.codedisaster.steamworks.SteamFriends;
 import com.codedisaster.steamworks.SteamID;
 
