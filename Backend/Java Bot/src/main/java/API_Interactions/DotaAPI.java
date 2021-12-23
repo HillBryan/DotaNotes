@@ -29,13 +29,12 @@ public class DotaAPI extends BaseAPI{
      * @param server_steam_id the id of the steam server.
      * @return A List of players' steamIDs currently playing on this server.
      */
-    public List<PlayerInfo> getPlayersFromServer(String server_steam_id) {
-
-        System.out.println("Received server_steam_id: " + server_steam_id);
+    public RealtimeStats getPlayersFromServer(String server_steam_id) {
 
         URI endpoint = URI.create(getEndpoint(server_steam_id));
         HttpRequest request = HttpRequest.newBuilder().uri(endpoint).build();
         HttpResponse response = null;
+        RealtimeStats responseStats = null;
 
         // Have to poll multiple times because endpoint can be unreliable.
         for (int i = 0; i < 15; i++) {
@@ -49,22 +48,13 @@ public class DotaAPI extends BaseAPI{
             }
         }
 
-        //List<PlayerInfo> players = getPlayersFromBody(response.body().toString());
         try {
-            RealtimeStats stats = objectMapper.readValue(response.body().toString(), RealtimeStats.class);
-            for (Team team : stats.getTeams()) {
-                for (Player player : team.getPlayers()) {
-                    System.out.println(player.getAccountid());
-                }
-            }
-        }
-        catch(Exception e) {
+            responseStats = objectMapper.readValue(response.body().toString(), RealtimeStats.class);
+        } catch(Exception e) {
             e.printStackTrace();
         }
 
-        //System.out.println("Sending Back Players: ");
-        //printPlayers(players);
-        return null;
+        return responseStats;
     }
 
     /**
@@ -76,54 +66,5 @@ public class DotaAPI extends BaseAPI{
         return "https://api.steampowered.com/IDOTA2MatchStats_570/GetRealtimeStats/V001??"
                 + "key=" + Config.API_KEY
                 + "&server_steam_id=" + server_steam_id;
-    }
-
-    /**
-     * Method parses JSON response for accountIDs.
-     * @param body The response body.
-     * @return A list of SteamIDs (64 bit version).
-     */
-    public List<PlayerInfo> getPlayersFromBody(String body) {
-
-        // Parsing body.
-        List<PlayerInfo> players = new ArrayList<>();
-        String[] lines = body.split("\n");
-
-        // Going through each line for account_ids.
-        // TODO: Speed this up!.
-
-        SteamID temp = null;
-        for (String line : lines) {
-            if (line.contains("accountid")) {
-                String id = line.substring(12, line.length() - 1);
-                Long long_id = Long.parseLong(id) + 76561197960265728L;
-                temp = SteamID.createFromNativeHandle(long_id);
-            }
-            if (line.contains("\"name\":")) {
-                String personaName = line.substring(8, line.length() - 2);
-                players.add(new PlayerInfo(temp, personaName));
-            }
-        }
-
-        return players;
-    }
-
-    public void printPlayers(List<PlayerInfo> players) {
-        System.out.print("Players: ");
-        for (PlayerInfo info : players) {
-            System.out.print(info.personaName + ",");
-        }
-        System.out.println();
-    }
-
-    public class PlayerInfo {
-        public SteamID steamID;
-        public String personaName;
-
-        public PlayerInfo(SteamID steamID, String personaName) {
-            this.steamID = steamID;
-            this.personaName = personaName;
-        }
-
     }
 }

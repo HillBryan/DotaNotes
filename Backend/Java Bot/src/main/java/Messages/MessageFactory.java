@@ -2,6 +2,9 @@ package Messages;
 
 import API_Interactions.DotaAPI;
 import API_Interactions.SpectatorAPI;
+import ResponseObjects.Player;
+import ResponseObjects.RealtimeStats;
+import ResponseObjects.Team;
 import com.codedisaster.steamworks.SteamID;
 
 import java.util.List;
@@ -28,20 +31,18 @@ public class MessageFactory {
     public String getPreGameMessage(SteamID steamID) {
 
         String steam_server_id = spectatorAPI.requestSteamServerID(steamID);
-        List<DotaAPI.PlayerInfo> players = dotaAPI.getPlayersFromServer(steam_server_id);
+        RealtimeStats stats = dotaAPI.getPlayersFromServer(steam_server_id);
         String message = "Players in lobby:\n";
 
-        if (players.size() == 0) {
+        if (stats == null) {
             return "Dota 2 Game Coordinator is unresponsive";
         }
 
-
-        for (int i = 0; i < players.size(); i++) {
-            DotaAPI.PlayerInfo info = players.get(i);
-            message += "Player #" + i + ": " +
-                    info.steamID + ", " +
-                    "Team: " + (i / 5) + ", " +
-                    info.personaName + "\n";
+        for (Team team : stats.getTeams()) {
+            for (Player player : team.getPlayers()) {
+                message += "Player: " + player.getName() + ", " +
+                        player.getAccountid() + "\n";
+            }
         }
 
         return message;
@@ -55,6 +56,10 @@ public class MessageFactory {
         return "Nice job: " + steamID;
     }
 
+    /**
+     * Singleton method for getting the factory instance.
+     * @return MessageFactory for getting the single factory instance.
+     */
     public static MessageFactory getInstance() {
         if (messageFactory == null) {
             messageFactory = new MessageFactory();

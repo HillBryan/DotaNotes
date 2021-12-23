@@ -24,11 +24,7 @@ public class SteamFriendsImpl implements SteamFriendsCallback {
 
     @Override
     public void onPersonaStateChange(SteamID steamID, SteamFriends.PersonaChange personaChange) {
-        // In some instances, this will trigger when one leaves a game.
-//        System.out.println("Received friend persona change: " + steamID);
-//        if (!steamID.equals(SteamWorksController.getInstance().getPersonalID())) {
-//            SteamWorksController.getInstance().getPresenceQueue().add(steamID);
-//        }
+
     }
 
     @Override
