@@ -6,9 +6,9 @@ package Credentials;
 public class Config {
 
     // Steam Bot logon credentials.
-    public static final String USERNAME = "dotarevenge004";
-    public static final String PASSWORD = "Revenge750461004";
+    public static final String USERNAME = "ENTER_HERE";
+    public static final String PASSWORD = "ENTER_HERE";
 
     // Dota 2 API key.
-    public static final String API_KEY = "0F87F835643DA4DA3744229F7918527F";
+    public static final String API_KEY = "ENTER_HERE";
 }

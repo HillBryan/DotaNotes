@@ -5,9 +5,9 @@
 // After successfully logging in, return steamguard code to ""
 var config = {};
 
-config.steam_name = "Spectator Bot";
-config.steam_user = "spectatorbot004";
-config.steam_pass = "Spectator750461004";
+config.steam_name = "ENTER_HERE";
+config.steam_user = "ENTER_HERE";
+config.steam_pass = "ENTER_HERE";
 config.steam_guard_code = "steamGuardCodeIfApplicable";
 
 module.exports = config;

@@ -49,5 +49,4 @@ package-lock.json
 .node_repl_history
 
 # config information
-Config.java
-config.js
+
