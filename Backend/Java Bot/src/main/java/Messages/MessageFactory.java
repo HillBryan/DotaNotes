@@ -50,6 +50,12 @@ public class MessageFactory {
         return message;
     }
 
+    public SteamID getSteamServerID(SteamID steamID) {
+        String steam_server_id = spectatorAPI.requestSteamServerID(steamID);
+        Long steamIDLong = Long.parseLong(steam_server_id);
+        return SteamID.createFromNativeHandle(steamIDLong);
+    }
+
     /**
      * Message is currently a stub.
      * @return steamID the SteamID of the recipient.

@@ -1,10 +1,12 @@
 package Steam_Controllers;
 
 import Callbacks.SteamFriendsImpl;
+import Callbacks.SteamMatchmakingImpl;
 import Callbacks.SteamUserImpl;
 import Messages.MessageFactory;
 import com.codedisaster.steamworks.SteamFriends;
 import com.codedisaster.steamworks.SteamID;
+import com.codedisaster.steamworks.SteamMatchmaking;
 import com.codedisaster.steamworks.SteamUser;
 
 import java.util.LinkedList;
@@ -20,14 +22,16 @@ public class SteamWorksController {
     private Queue<SteamID> presenceQueue;           // Queue for handling input.
     private SteamUser steamUser;                    // SteamUser for interacting with user information.
     private SteamFriends steamFriends;              // SteamFriends for interacting with steam friends information.
+    private SteamMatchmaking steamMatchmaking;      // SteamMatchmaking impl.
     private SteamKitController steamKitController;  // SteamKitController for sending steam messages.
-    private FriendStateManager friendStateManager;
+    private FriendStateManager friendStateManager;  // State manager for friends in Dota 2.
     private static SteamWorksController instance;   // Singleton instance.
 
     private SteamWorksController() {
         presenceQueue = new LinkedList<>();
         steamUser = new SteamUser(new SteamUserImpl());
         steamFriends = new SteamFriends(new SteamFriendsImpl());
+        steamMatchmaking = new SteamMatchmaking(new SteamMatchmakingImpl());
         friendStateManager = new FriendStateManager(steamUser.getSteamID());
         steamKitController = new SteamKitController();
     }
@@ -49,6 +53,15 @@ public class SteamWorksController {
     public void sendPreGameMessage(SteamID id) {
         System.out.println("Sending Message to: " + id);
         String message = MessageFactory.getInstance().getPreGameMessage(id);
+
+        // Trying to get lobby data
+        SteamID lobbyID = MessageFactory.getInstance().getSteamServerID(id);
+        steamMatchmaking.requestLobbyData(lobbyID);
+        int data = steamMatchmaking.getLobbyDataCount(lobbyID);
+        System.out.println("Key Count: " + data);
+
+
+
         try {
             Thread.sleep(1000);
             steamKitController.sendMessage(id, message);
