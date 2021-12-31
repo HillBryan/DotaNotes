@@ -154,19 +154,21 @@ public class FriendStateManager {
      */
     public boolean considerForQueue(SteamID steamID) {
 
-        // Check to make sure its not in sets.
-
         // Getting rich presence
         String richPresence = SteamWorksController.
                 getInstance().
                 getSteamFriends().
                 getFriendRichPresence(steamID, "steam_display");
 
+        // Making sure duplicate main menus don't get added to queue
         boolean setValidation = inDotaClientSet.contains(steamID) &&
-                                !inDotaMatchSet.contains(steamID);
+                                !inDotaMatchSet.contains(steamID) &&
+                                richPresence.toLowerCase().contains("main menu");
 
+        if (setValidation) return false;
+
+        // Other accepted presences
         return !steamID.equals(personalID) &&
-                setValidation &&
                (richPresence.toLowerCase().contains("lvl 1 ") ||
                 richPresence.toLowerCase().contains("level 1 ") ||
                 richPresence.toLowerCase().contains("main menu"));
