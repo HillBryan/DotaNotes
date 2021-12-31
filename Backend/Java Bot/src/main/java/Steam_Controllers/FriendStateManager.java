@@ -1,5 +1,6 @@
 package Steam_Controllers;
 
+import Messages.MessageFactory;
 import Steam_Controllers.SteamWorksController;
 import com.codedisaster.steamworks.SteamFriends;
 import com.codedisaster.steamworks.SteamID;
@@ -13,15 +14,14 @@ public class FriendStateManager {
 
     private HashSet<SteamID> inDotaClientSet;       // Set for friends in Dota.
     private HashSet<SteamID> inDotaMatchSet;        // Set for friends in current match.
+    private SteamID personalID;                     // Personal steamID.
 
-    private SteamID personalID;
 
-
-    public FriendStateManager(SteamID personalID) {
+    public FriendStateManager() {
         //this.personalID = SteamWorksController.getInstance().getPersonalID();
         inDotaClientSet = new HashSet<>();
         inDotaMatchSet = new HashSet<>();
-        this.personalID = personalID;
+        this.personalID = SteamWorksController.getInstance().getPersonalID();
     }
 
     /**
@@ -53,7 +53,7 @@ public class FriendStateManager {
             this.inDotaMatchSet.add(friendID);
 
             System.out.println("Player has joined game: " + friendID);
-            SteamWorksController.getInstance().sendPreGameMessage(friendID);
+            MessageFactory.getInstance().sendPreGameMessage(friendID);
         }
     }
 
@@ -72,7 +72,7 @@ public class FriendStateManager {
             // Player leaves the Dota 2 match.
             if (info.getGameID() == SteamWorksController.getInstance().DOTA_2_ID) {
                 System.out.println("Player has left game: " + friendID);
-                SteamWorksController.getInstance().sendPostGameMessage(friendID);
+                MessageFactory.getInstance().sendPostGameMessage(friendID);
             }
         }
     }
@@ -86,7 +86,7 @@ public class FriendStateManager {
         SteamFriends.FriendGameInfo info = new SteamFriends.FriendGameInfo();
         SteamWorksController.getInstance().getSteamFriends().getFriendGamePlayed(steamID, info);
 
-        // Getting rich context
+        // Getting rich presence
         String richPresence = SteamWorksController.
                 getInstance().
                 getSteamFriends().
@@ -142,6 +142,29 @@ public class FriendStateManager {
             }
         }
         System.out.println("Friends in Dota 2: " + this.inDotaClientSet);
+    }
+
+    /**
+     * Method returns true if steamID is valid for joining the process queue.
+     * Three conditions for joining the queue:
+     * - steamID is not the bot personal steam ID.
+     * - Friend joins Dota "Main Menu".
+     * - Friend joins Dota game denoted by the level or lvl keyword.
+     * @param steamID The steamID to be added to the queue.
+     * @return True if steamID is valid for the queue, false otherwise.
+     */
+    public boolean considerForQueue(SteamID steamID) {
+
+        // Getting rich presence
+        String richPresence = SteamWorksController.
+                getInstance().
+                getSteamFriends().
+                getFriendRichPresence(steamID, "steam_display");
+
+        return !steamID.equals(personalID) &&
+               (richPresence.toLowerCase().contains("lvl 1") ||
+                richPresence.toLowerCase().contains("level 1") ||
+                richPresence.toLowerCase().contains("Main Menu"));
     }
 
     /**
