@@ -8,8 +8,6 @@ import ResponseObjects.Team;
 import Steam_Controllers.SteamKitController;
 import com.codedisaster.steamworks.SteamID;
 
-import java.util.List;
-
 /**
  * @Author Bryan Hill
  */

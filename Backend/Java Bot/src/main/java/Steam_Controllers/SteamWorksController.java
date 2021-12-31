@@ -2,13 +2,9 @@ package Steam_Controllers;
 
 import Callbacks.SteamFriendsImpl;
 import Callbacks.SteamUserImpl;
-import Messages.MessageFactory;
 import com.codedisaster.steamworks.SteamFriends;
 import com.codedisaster.steamworks.SteamID;
 import com.codedisaster.steamworks.SteamUser;
-
-import java.util.LinkedList;
-import java.util.Queue;
 
 /**
  * @Author Bryan Hill

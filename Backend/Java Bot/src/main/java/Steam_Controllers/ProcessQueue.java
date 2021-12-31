@@ -5,6 +5,9 @@ import com.codedisaster.steamworks.SteamID;
 import java.util.LinkedList;
 import java.util.Queue;
 
+/**
+ * @Author: Bryan Hill
+ */
 public class ProcessQueue {
 
     private Queue<SteamID> presenceQueue;           // Queue for handling input.

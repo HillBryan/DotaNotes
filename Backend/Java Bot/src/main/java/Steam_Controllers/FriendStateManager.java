@@ -1,7 +1,6 @@
 package Steam_Controllers;
 
 import Messages.MessageFactory;
-import Steam_Controllers.SteamWorksController;
 import com.codedisaster.steamworks.SteamFriends;
 import com.codedisaster.steamworks.SteamID;
 

@@ -1,7 +1,6 @@
 package Callbacks;
 
 import Steam_Controllers.ProcessQueue;
-import Steam_Controllers.SteamWorksController;
 import com.codedisaster.steamworks.*;
 
 /**
