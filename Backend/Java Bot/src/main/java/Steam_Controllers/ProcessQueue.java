@@ -27,6 +27,12 @@ public class ProcessQueue {
         if (!presenceQueue.isEmpty()) {
             SteamID steamID = presenceQueue.poll();
             System.out.println("Popping id: " + steamID + " off the queue.");
+            // Getting rich presence
+            String richPresence = SteamWorksController.
+                    getInstance().
+                    getSteamFriends().
+                    getFriendRichPresence(steamID, "steam_display");
+            System.out.println("Presence: " + richPresence);
             friendStateManager.handlePresenceChange(steamID);
         }
     }

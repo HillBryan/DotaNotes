@@ -54,7 +54,7 @@ public class Runner {
                 }
                 clientSize = getClientSetSize(queue);
             }
-        }, 0, 1000);
+        }, 0, 1500);
     }
 
     /**
