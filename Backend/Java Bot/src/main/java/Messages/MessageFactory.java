@@ -5,6 +5,7 @@ import API_Interactions.SpectatorAPI;
 import ResponseObjects.Player;
 import ResponseObjects.RealtimeStats;
 import ResponseObjects.Team;
+import Steam_Controllers.SteamKitController;
 import com.codedisaster.steamworks.SteamID;
 
 import java.util.List;
@@ -21,6 +22,23 @@ public class MessageFactory {
     private MessageFactory() {
         dotaAPI = new DotaAPI();
         spectatorAPI = new SpectatorAPI();
+    }
+
+    /**
+     * Method is currently a stub.
+     */
+    public void sendPreGameMessage(SteamID id) {
+        System.out.println("Sending Message to: " + id);
+        String message = getPreGameMessage(id);
+        SteamKitController.getInstance().sendMessage(id, message);
+    }
+
+    /**
+     * Method is currently a stub.
+     */
+    public void sendPostGameMessage(SteamID id) {
+        String message = getPostGameMessage(id);
+        SteamKitController.getInstance().sendMessage(id, message);
     }
 
     /**

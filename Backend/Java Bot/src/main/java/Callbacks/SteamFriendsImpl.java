@@ -1,10 +1,8 @@
 package Callbacks;
 
+import Steam_Controllers.ProcessQueue;
 import Steam_Controllers.SteamWorksController;
-import com.codedisaster.steamworks.SteamFriends;
-import com.codedisaster.steamworks.SteamFriendsCallback;
-import com.codedisaster.steamworks.SteamID;
-import com.codedisaster.steamworks.SteamResult;
+import com.codedisaster.steamworks.*;
 
 /**
  * @Author Bryan Hill
@@ -31,11 +29,7 @@ public class SteamFriendsImpl implements SteamFriendsCallback {
 
     @Override
     public void onFriendRichPresenceUpdate(SteamID steamID, int i) {
-        // This is where game change notifications will take place.
-        System.out.println("Received Friend Presence change: " + steamID);
-        if (!steamID.equals(SteamWorksController.getInstance().getPersonalID())) {
-            SteamWorksController.getInstance().getPresenceQueue().add(steamID);
-        }
+        ProcessQueue.getInstance().addToProcessQueue(steamID);
     }
 
     @Override

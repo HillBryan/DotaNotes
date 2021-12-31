@@ -1,6 +1,7 @@
 package Main;
 
-import Steam_Controllers.SteamWorksController;
+import Steam_Controllers.ProcessQueue;
+import Steam_Controllers.SteamKitController;
 import com.codedisaster.steamworks.SteamAPI;
 import com.codedisaster.steamworks.SteamException;
 
@@ -16,57 +17,60 @@ public class Runner {
 
     public static void main(String[] args) {
 
-        // Initializing Steam Libraries.
-        initialize();
+        // Initializing SteamWorks Libraries.
+        initializeSteamWorks();
+
+        //Printing for console formatting.
+        printSpacer();
+
+        // Initializing SteamKit Libraries.
+        initializeSteamKit();
 
         //Printing for console formatting.
         printSpacer();
 
         // Controller object for all operations with the SteamWorks API.
-        SteamWorksController controller = SteamWorksController.getInstance();
-
-        //Printing for console formatting.
-        printSpacer();
+        ProcessQueue queue = ProcessQueue.getInstance();
 
         // Initial parse of friend list state.
-        controller.getFriendStateManager().refreshClientSet();
+        queue.getFriendStateManager().refreshClientSet();
 
         // Starting callback repeat timer.
         Timer t = new Timer();
         t.schedule(new TimerTask() {
 
-            int clientSize = getClientSetSize(controller);
+            int clientSize = getClientSetSize(queue);
 
             public void run() {
                 SteamAPI.runCallbacks();
-                controller.processQueue();
+                queue.processQueue();
 
-                int currentSize = getClientSetSize(controller);
+                int currentSize = getClientSetSize(queue);
 
                 if (currentSize != clientSize) {
                     if (currentSize < clientSize) System.out.print("Friend has Left Dota: ");
                     else System.out.print("Friend has Joined Dota: ");
-                    System.out.println(controller.getFriendStateManager().getInDotaClientSet());
+                    System.out.println(queue.getFriendStateManager().getInDotaClientSet());
                 }
-                clientSize = getClientSetSize(controller);
+                clientSize = getClientSetSize(queue);
             }
         }, 0, 1000);
     }
 
     /**
      * Method for getting the size of the client set.
-     * @param controller SteamWorksController for managing SteamWorks activities.
+     * @param queue ProcessQueue for managing queued steamID updates.
      * @return
      */
-    public static int getClientSetSize(SteamWorksController controller) {
-        return controller.getFriendStateManager().getInDotaClientSet().size();
+    public static int getClientSetSize(ProcessQueue queue) {
+        return queue.getFriendStateManager().getInDotaClientSet().size();
     }
 
     /**
      * Method initializes Steam libraries.
      * This is the first step to running this application.
      */
-    public static void initialize() {
+    public static void initializeSteamWorks() {
         try {
             SteamAPI.loadLibraries();
             if (!SteamAPI.init()) {
@@ -77,6 +81,10 @@ public class Runner {
         }
         System.out.println("\n**********************************\n");
         System.out.println("SteamWorks: Login Success!");
+    }
+
+    public static void initializeSteamKit() {
+        SteamKitController.getInstance();
     }
 
 

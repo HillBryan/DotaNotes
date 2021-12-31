@@ -23,6 +23,7 @@ public class SteamKitController {
     private SteamFriends steamFriends;
     private CallbackManager manager;
     private SteamUser steamUser;
+    private static SteamKitController instance;
 
     public SteamKitController() {
         // Steam Objects
@@ -129,5 +130,16 @@ public class SteamKitController {
      */
     private void onAccountInfo(AccountInfoCallback callback) {
         steamFriends.setPersonaState(EPersonaState.Online);
+    }
+
+    /**
+     * Method for getting instance of SteamKitController.
+     * @return SteamKitController global instance.
+     */
+    public static SteamKitController getInstance() {
+        if (instance == null) {
+            instance = new SteamKitController();
+        }
+        return instance;
     }
 }
