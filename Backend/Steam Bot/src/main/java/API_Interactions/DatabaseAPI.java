@@ -24,8 +24,6 @@ public class DatabaseAPI extends BaseAPI{
     public boolean addLink(RealtimeStats stats, SteamID steamID, String link) {
 
         String steamID64 = getSteamID64(steamID);
-        HttpPost httpPost = new HttpPost("http://localhost:8080/rest/link/add");
-        CloseableHttpClient client = HttpClients.createDefault();
 
         if (stats == null) {
             System.out.println("Stats was null");
@@ -34,8 +32,10 @@ public class DatabaseAPI extends BaseAPI{
 
 
         try {
+            HttpPost httpPost = new HttpPost("http://localhost:8080/rest/link/add");
+            CloseableHttpClient client = HttpClients.createDefault();
             String statsJson = objectMapper.writeValueAsString(stats);
-            statsJson = statsJson.replaceAll("\"", "\\\\\"");
+            statsJson = statsJson.replaceAll("\"", "'");
 
             String json = "{" +
                     "\"match_details\": \"" + statsJson + "\"," +
