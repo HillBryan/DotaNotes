@@ -28,18 +28,22 @@ public class DatabaseAPI extends BaseAPI{
         CloseableHttpClient client = HttpClients.createDefault();
 
         if (stats == null) {
+            System.out.println("Stats was null");
             return false;
         }
 
 
         try {
             String statsJson = objectMapper.writeValueAsString(stats);
+            statsJson = statsJson.replaceAll("\"", "\\\\\"");
 
             String json = "{" +
                     "\"match_details\": \"" + statsJson + "\"," +
                     "\"steam_id\": \"" + steamID64 + "\"," +
                     "\"hash_key\": \"" + link +
                     "\"}";
+
+            System.out.println(json);
 
             StringEntity entity = new StringEntity(json);
             httpPost.setEntity(entity);
@@ -49,6 +53,7 @@ public class DatabaseAPI extends BaseAPI{
             CloseableHttpResponse response = client.execute(httpPost);
             client.close();
 
+            System.out.println(response.getStatusLine().getStatusCode());
             return response.getStatusLine().getStatusCode() == 200;
 
         } catch (Exception e) {
