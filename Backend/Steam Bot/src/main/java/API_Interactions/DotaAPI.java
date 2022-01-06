@@ -18,10 +18,8 @@ import java.util.List;
  */
 public class DotaAPI extends BaseAPI{
 
-    private ObjectMapper objectMapper;
-
     public DotaAPI() {
-        objectMapper = new ObjectMapper();
+
     }
 
     /**

@@ -1,6 +1,7 @@
 package API_Interactions;
 
 import com.codedisaster.steamworks.SteamID;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.net.http.HttpClient;
 import java.time.Duration;
@@ -11,11 +12,13 @@ import java.time.Duration;
 public abstract class BaseAPI {
 
     protected HttpClient client;
+    protected ObjectMapper objectMapper;
 
     public BaseAPI() {
         client = HttpClient.newBuilder()
                 .connectTimeout(Duration.ofSeconds(10))
                 .build();
+        objectMapper = new ObjectMapper();
     }
 
     /**

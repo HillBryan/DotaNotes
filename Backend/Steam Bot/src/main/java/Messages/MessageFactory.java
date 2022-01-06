@@ -1,5 +1,6 @@
 package Messages;
 
+import API_Interactions.DatabaseAPI;
 import API_Interactions.DotaAPI;
 import API_Interactions.SpectatorAPI;
 import ResponseObjects.Player;
@@ -16,10 +17,12 @@ public class MessageFactory {
     private static MessageFactory messageFactory;
     private DotaAPI dotaAPI;
     private SpectatorAPI spectatorAPI;
+    private DatabaseAPI databaseAPI;
 
     private MessageFactory() {
         dotaAPI = new DotaAPI();
         spectatorAPI = new SpectatorAPI();
+        databaseAPI = new DatabaseAPI();
     }
 
     /**
@@ -48,20 +51,27 @@ public class MessageFactory {
 
         String steam_server_id = spectatorAPI.requestSteamServerID(steamID);
         RealtimeStats stats = dotaAPI.getPlayersFromServer(steam_server_id);
-        String message = "Players in lobby:\n";
+        String message = "Your notes on players in-game as well as hero/match-up notes " +
+                         " can be found at: ";
+
 
         if (stats == null) {
             return "Dota 2 Game Coordinator is unresponsive";
         }
 
-        for (Team team : stats.getTeams()) {
-            for (Player player : team.getPlayers()) {
-                message += "Player: " + player.getName() + ", " +
-                        player.getAccountid() + "\n";
-            }
-        }
+        // Generating unique link based off of matchID, random number, and server_steam_id.
+        String key = (stats.getMatch().getMatch_id() +
+                     (Math.random() * 1000000) +
+                     stats.getMatch().getServer_steam_id()).hashCode() + "";
 
-        message += "MatchID: " + stats.getMatch().getMatch_id();
+        // Putting into database.
+        boolean success = databaseAPI.addLink(stats, steamID, key);
+
+        if (success) {
+            message += "www.dotaNotes.com/" + key;
+        } else {
+            return "Error connecting to database.";
+        }
 
         return message;
     }

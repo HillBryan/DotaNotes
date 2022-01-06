@@ -1,0 +1,14 @@
+/Users/bryanhill/Desktop/DotaNotes/Backend/Rest API/src/main/java/com/dota_notes/db/springbootmysql/repository/UserRepository.java
+/Users/bryanhill/Desktop/DotaNotes/Backend/Rest API/src/main/java/com/dota_notes/db/springbootmysql/config/CorsConfig.java
+/Users/bryanhill/Desktop/DotaNotes/Backend/Rest API/src/main/java/com/dota_notes/db/springbootmysql/SpringBootMysqlApplication.java
+/Users/bryanhill/Desktop/DotaNotes/Backend/Rest API/src/main/java/com/dota_notes/db/springbootmysql/repository/LinkRepository.java
+/Users/bryanhill/Desktop/DotaNotes/Backend/Rest API/src/main/java/com/dota_notes/db/springbootmysql/model/Link.java
+/Users/bryanhill/Desktop/DotaNotes/Backend/Rest API/src/main/java/com/dota_notes/db/springbootmysql/resource/HeroCommentResource.java
+/Users/bryanhill/Desktop/DotaNotes/Backend/Rest API/src/main/java/com/dota_notes/db/springbootmysql/resource/LinkResource.java
+/Users/bryanhill/Desktop/DotaNotes/Backend/Rest API/src/main/java/com/dota_notes/db/springbootmysql/repository/UserCommentRepository.java
+/Users/bryanhill/Desktop/DotaNotes/Backend/Rest API/src/main/java/com/dota_notes/db/springbootmysql/model/User.java
+/Users/bryanhill/Desktop/DotaNotes/Backend/Rest API/src/main/java/com/dota_notes/db/springbootmysql/resource/UserCommentResource.java
+/Users/bryanhill/Desktop/DotaNotes/Backend/Rest API/src/main/java/com/dota_notes/db/springbootmysql/model/UserComment.java
+/Users/bryanhill/Desktop/DotaNotes/Backend/Rest API/src/main/java/com/dota_notes/db/springbootmysql/resource/UserResource.java
+/Users/bryanhill/Desktop/DotaNotes/Backend/Rest API/src/main/java/com/dota_notes/db/springbootmysql/model/HeroComment.java
+/Users/bryanhill/Desktop/DotaNotes/Backend/Rest API/src/main/java/com/dota_notes/db/springbootmysql/repository/HeroCommentRepository.java
