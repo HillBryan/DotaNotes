@@ -62,7 +62,8 @@ public class MessageFactory {
         // Generating unique link based off of matchID, random number, and server_steam_id.
         String key = (stats.getMatch().getMatch_id() +
                      (Math.random() * 1000000) +
-                     stats.getMatch().getServer_steam_id()).hashCode() + "";
+                     stats.getMatch().getServer_steam_id()).hashCode() + "f"
+                     + steamID.toString().hashCode();
 
         // Putting into database.
         boolean success = databaseAPI.addLink(stats, steamID, key);
